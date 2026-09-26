@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/the-food", "destination": "/the-food/index.html" },
+    { "source": "/find-it", "destination": "/find-it/index.html" },
+    { "source": "/share", "destination": "/share/index.html" }
+  ]
+}

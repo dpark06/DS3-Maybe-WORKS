@@ -1,0 +1,22 @@
+{
+  "name": "notonlybodegacats",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "postinstall": "node scripts/copy-maplibre-worker.mjs",
+    "prebuild": "node scripts/copy-maplibre-worker.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.3.1"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "maplibre-gl": "^6.11.2",
+    "qrcode": "^1.5.4",
+    "three": "^0.186.1"
+  }
+}
