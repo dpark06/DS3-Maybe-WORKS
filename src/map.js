@@ -1,8 +1,9 @@
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { SYMBOLS } from './symbols.js';
+import { url } from './base.js';
 
-maplibregl.setWorkerUrl('/maplibre/maplibre-gl-worker.mjs');
+maplibregl.setWorkerUrl(url('maplibre/maplibre-gl-worker.mjs'));
 
 const BLUE = '#0B4AFF';
 const DEEP = '#0836D6';
@@ -26,7 +27,7 @@ function posterStyle() {
   });
   return {
     version: 8,
-    glyphs: `${location.origin}/fonts/{fontstack}/{range}.pbf`,
+    glyphs: `${location.origin}${url('fonts/{fontstack}/{range}.pbf')}`,
     sources: { omt: { type: 'vector', url: 'https://tiles.openfreemap.org/planet' } },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': BLUE } },

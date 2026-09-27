@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import gsap from 'gsap';
+import { url } from './base.js';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,7 +35,7 @@ export async function initHero(heroEl) {
 
   // ---- HDRI: a studio map (big softbox on one side, cool strips behind, blue floor bounce) the metal reflects
   const pmrem = new THREE.PMREMGenerator(renderer);
-  const hdr = await new RGBELoader().loadAsync('/env/studio.hdr');
+  const hdr = await new RGBELoader().loadAsync(url('env/studio.hdr'));
   hdr.mapping = THREE.EquirectangularReflectionMapping;
   scene.environment = pmrem.fromEquirectangular(hdr).texture;
   scene.environmentIntensity = 1.0;
@@ -68,10 +69,10 @@ export async function initHero(heroEl) {
   floor.receiveShadow = true;
   scene.add(floor);
 
-  const draco = new DRACOLoader().setDecoderPath('/draco/gltf/');
+  const draco = new DRACOLoader().setDecoderPath(url('draco/gltf/'));
   const loader = new GLTFLoader().setDRACOLoader(draco);
   const names = ['top', 'middle', 'bottom'];
-  const gltfs = await Promise.all(names.map((n) => loader.loadAsync(`/models/can-${n}.glb`)));
+  const gltfs = await Promise.all(names.map((n) => loader.loadAsync(url(`models/can-${n}.glb`))));
 
   const cans = gltfs.map((g, i) => {
     const model = g.scene;

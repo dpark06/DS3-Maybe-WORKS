@@ -17,11 +17,15 @@ const rewritePages = (server) => {
 };
 
 // <!--include:nav--> and <!--include:footer--> pull in partials/*.html so every page shares one nav and footer.
+let base = '/';
 const partials = {
   name: 'partials',
+  configResolved: (config) => { base = config.base; },
   transformIndexHtml: {
     order: 'pre',
-    handler: (html) => html.replace(/<!--include:(\w+)-->/g, (_, n) => readFileSync(resolve(root, 'partials', `${n}.html`), 'utf8')),
+    handler: (html) => html
+      .replace(/<!--include:(\w+)-->/g, (_, n) => readFileSync(resolve(root, 'partials', `${n}.html`), 'utf8'))
+      .replaceAll('%BASE%', base), // links between pages: correct at the domain root and inside a GitHub Pages folder
   },
 };
 
@@ -34,7 +38,9 @@ const lanIp = () => {
   return null;
 };
 
+// VITE_BASE is the folder the site lives in. Leave it empty for a normal domain; GitHub Pages needs /REPO-NAME/ (see `npm run build:pages`).
 export default defineConfig(({ command, isPreview }) => ({
+  base: process.env.VITE_BASE || '/',
   server: { host: true },
   optimizeDeps: { exclude: ['maplibre-gl'] }, // its module worker must keep its real URL
   define: { __LAN_HOST__: JSON.stringify(command === 'serve' || isPreview ? lanIp() : null) },

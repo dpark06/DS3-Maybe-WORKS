@@ -18,7 +18,14 @@ npm run preview      # serve the built site locally
 
 Node 20+ is needed (built on Node 24).
 
-## Put it online
+## GitHub Pages (what this repo uses)
+
+GitHub Pages can only show finished files, not source code, so the finished site lives in the **`docs/`** folder.
+To update it after you change something: `npm run build:pages`, then commit and push `docs/` along with your changes.
+In the repository on GitHub go to **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, branch **main**, folder **/docs**, and Save.
+The address is `https://dpark06.github.io/DS3-Maybe-WORKS/`. (`VITE_BASE` in `package.json` is the repo folder name; change it if the repo is renamed.)
+
+## Put it online (your own domain)
 
 `dist/` is a plain static site. Any static host works: Netlify, Vercel, Cloudflare Pages, GitHub Pages.
 Point the domain at it and you are done. Requirements:

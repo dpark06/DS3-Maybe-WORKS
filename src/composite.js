@@ -1,5 +1,6 @@
 import photos from './data/photos.json';
 import { SYMBOLS } from './symbols.js';
+import { url } from './base.js';
 
 export const OUT_W = 1080;
 export const OUT_H = 1350; // Instagram portrait
@@ -25,7 +26,7 @@ export async function drawComposite(canvas, photoId, symbolKey) {
   const sym = SYMBOLS[symbolKey];
   if (!photo || !sym) throw new Error('Unknown photo or symbol');
   const [img] = await Promise.all([
-    loadImage(`/photos/${photo.id}.webp`),
+    loadImage(url(`photos/${photo.id}.webp`)),
     document.fonts.load('700 48px Oswald'),
     document.fonts.load('300 30px Oswald'),
   ]);
@@ -88,7 +89,7 @@ export function siteOrigin() {
 }
 
 export function shareUrl(photoId, symbolKey) {
-  const u = new URL('/share', siteOrigin());
+  const u = new URL(url('share/'), siteOrigin());
   u.searchParams.set('photo', photoId);
   u.searchParams.set('symbol', symbolKey);
   return u.toString();

@@ -1,4 +1,5 @@
 import photos from './data/photos.json';
+import { url } from './base.js';
 import QRCode from 'qrcode';
 import { SYMBOLS, SYMBOL_KEYS, CONFIRMATIONS, symbolSVG } from './symbols.js';
 import { drawComposite, downloadCanvas, nativeShare, canNativeShare, shareUrl } from './composite.js';
@@ -28,7 +29,7 @@ export function initCollection() {
     b.type = 'button';
     b.dataset.id = p.id;
     b.setAttribute('aria-label', `Open photo: ${p.alt}`);
-    b.innerHTML = `<img src="/photos/${p.id}-t.webp" width="${p.tw}" height="${p.th}" alt="${p.alt}" loading="lazy" decoding="async" />`;
+    b.innerHTML = `<img src="${url(`photos/${p.id}-t.webp`)}" width="${p.tw}" height="${p.th}" alt="${p.alt}" loading="lazy" decoding="async" />`;
     frag.appendChild(b);
   });
   grid.appendChild(frag);
@@ -50,7 +51,7 @@ export function initCollection() {
     const p = photos.find((x) => x.id === id);
     current = { id, symbol: null };
     opener = trigger;
-    img.src = `/photos/${p.id}.webp`;
+    img.src = url(`photos/${p.id}.webp`);
     img.alt = p.alt;
     showChoose();
     if (!modal.open) modal.showModal();

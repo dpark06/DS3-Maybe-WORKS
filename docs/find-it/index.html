@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0B4AFF" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B4AFF'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='white' stroke-width='7'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap" rel="stylesheet" />
+  <title>Find It Near You · Not Only for Bodega Cats</title>
+  <meta name="description" content="Find convenience stores near you on a poster-style map." />
+  <script type="module" crossorigin src="/DS3-Maybe-WORKS/assets/find-nknk-G9_.js"></script>
+  <link rel="modulepreload" crossorigin href="/DS3-Maybe-WORKS/assets/common-Dv5eTyM0.js">
+  <link rel="stylesheet" crossorigin href="/DS3-Maybe-WORKS/assets/common-DaTTbpE0.css">
+  <link rel="stylesheet" crossorigin href="/DS3-Maybe-WORKS/assets/find-B8-mEBLf.css">
+</head>
+<body data-page="find">
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="/DS3-Maybe-WORKS/">Not only for bodega cats</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="/DS3-Maybe-WORKS/" data-nav="home">Home</a>
+      <a href="/DS3-Maybe-WORKS/the-food/" data-nav="food">The Food</a>
+      <a href="/DS3-Maybe-WORKS/find-it/" data-nav="find">Find It Near You</a>
+    </nav>
+  </div>
+</header>
+
+
+  <main id="main">
+    <section class="section section--first where" id="where" aria-labelledby="where-title">
+      <div class="wrap">
+        <p class="eyebrow">Find it near you</p>
+        <h1 id="where-title" class="h2">Your corner store is closer than you think.</h1>
+        <p class="lede">Find the convenience stores around you, then stop by and say hi to the shop cat.</p>
+
+        <form class="finder" id="finder" role="search">
+          <button type="button" class="btn btn--solid" id="locate-btn">Use my location</button>
+          <label class="finder__field">
+            <span class="sr-only">Search a city or address</span>
+            <input type="search" id="place-input" placeholder="Or search a city or address" autocomplete="off" />
+          </label>
+          <button type="submit" class="btn">Search</button>
+        </form>
+        <p class="status" id="map-status" role="status" aria-live="polite"></p>
+
+        <div class="map" id="map" role="region" aria-label="Map of nearby convenience stores"></div>
+        <ul class="stores" id="store-list" aria-label="Nearby convenience stores"></ul>
+        <p class="fineprint">Store data from OpenStreetMap contributors. Product availability may vary by shop.</p>
+      </div>
+    </section>
+  </main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="footer__big">Not only<br />for bodega cats.</p>
+    <p class="fineprint">Made for every cat: shop regulars, couch loungers, and everyone in between.</p>
+  </div>
+  <!-- decorative: the collage cat walks across, leaves on the left, and comes back in from the right -->
+  <div class="catwalk" aria-hidden="true">
+    <video class="catwalk__video" muted loop playsinline preload="auto" poster="/DS3-Maybe-WORKS/img/cat-run-poster.webp" tabindex="-1"></video>
+  </div>
+</footer>
+
+</body>
+</html>

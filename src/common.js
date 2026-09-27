@@ -1,6 +1,7 @@
 import './style.css';
 import { SYMBOLS, SYMBOL_KEYS, symbolSVG } from './symbols.js';
 import { initCursor } from './cursor.js';
+import { url } from './base.js';
 
 // Nav: mark the current page, and tell CSS how tall the bar is (the hero sticks under it).
 export function initNav() {
@@ -44,7 +45,7 @@ export function initCatWalk() {
   const v = document.querySelector('.catwalk__video');
   if (!v) return;
   const apple = /iPad|iPhone|iPod/.test(navigator.userAgent) || (/^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent));
-  v.src = apple ? '/video/cat-run-safari.mov' : '/video/cat-run.webm'; // Safari/iOS play HEVC with alpha; the rest play WebM (VP9 with alpha)
+  v.src = url(apple ? 'video/cat-run-safari.mov' : 'video/cat-run.webm'); // Safari/iOS play HEVC with alpha; the rest play WebM (VP9 with alpha)
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const speed = () => {                                   // walking speed scales with the cat's size
     const h = v.getBoundingClientRect().height || 300;
