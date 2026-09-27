@@ -35,3 +35,25 @@ export function retryBrokenImages(root = document) {
 
 initNav();
 retryBrokenImages();
+initCatWalk();
+
+// Footer cat: pick a video the browser can show WITH transparency, set the walking speed, respect reduced motion.
+export function initCatWalk() {
+  const v = document.querySelector('.catwalk__video');
+  if (!v) return;
+  const apple = /iPad|iPhone|iPod/.test(navigator.userAgent) || (/^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent));
+  v.src = apple ? '/video/cat-run-safari.mov' : '/video/cat-run.webm'; // Safari/iOS play HEVC with alpha; the rest play WebM (VP9 with alpha)
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const speed = () => {                                   // walking speed scales with the cat's size
+    const h = v.getBoundingClientRect().height || 300;
+    const travel = window.innerWidth + v.getBoundingClientRect().width * 0.48 + 40;
+    v.parentElement.style.setProperty('--dur', `${(travel / (h * 0.42)).toFixed(1)}s`);
+  };
+  speed();
+  addEventListener('resize', speed);
+  if (reduce) { v.removeAttribute('autoplay'); v.pause(); return; }
+  const play = () => v.play().catch(() => {});
+  v.addEventListener('canplay', play, { once: true });
+  // only run while it is on screen
+  if ('IntersectionObserver' in window) new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? play() : v.pause()))).observe(v.parentElement);
+}
