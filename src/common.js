@@ -51,6 +51,7 @@ export function initCatWalk() {
   };
   speed();
   addEventListener('resize', speed);
+  addEventListener('load', speed);          // measure again once styles and fonts have settled
   if (reduce) { v.removeAttribute('autoplay'); v.pause(); return; }
   const play = () => v.play().catch(() => {});
   v.addEventListener('canplay', play, { once: true });
