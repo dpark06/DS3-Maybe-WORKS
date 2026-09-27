@@ -199,7 +199,7 @@ button { font: inherit; color: inherit; }
 
 /* the walking cat: the video is 16:9 with the cat in the middle, so it slides across the full width and wraps around */
 .catwalk { --h: clamp(115px, 18vw, 260px); --w: calc(var(--h) * 16 / 9); --half: calc(var(--w) * 0.24); position: relative; height: var(--h); width: 100%; overflow: hidden; pointer-events: none; }
-.catwalk__video { position: absolute; left: 0; bottom: 0; height: var(--h); width: var(--w); object-fit: contain; background: transparent; animation: cat-walk var(--dur, 26s) linear infinite; will-change: transform; }
+.catwalk__cat { position: absolute; left: 0; bottom: 0; height: var(--h); width: var(--w); object-fit: contain; animation: cat-walk var(--dur, 26s) linear infinite; will-change: transform; }
 @keyframes cat-walk {
   from { transform: translateX(calc(100vw - var(--w) * .5 + var(--half))); }   /* cat just off the right edge */
   to   { transform: translateX(calc(-1 * (var(--w) * .5 + var(--half)))); }     /* cat just off the left edge */
@@ -212,7 +212,7 @@ button { font: inherit; color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .tile--in { animation: none; }
-  .catwalk__video { animation: none; left: 50%; transform: translateX(-50%); }
+  .catwalk__cat { animation: none; left: 50%; transform: translateX(-50%); }
   * { transition-duration: .01ms !important; }
 }
 

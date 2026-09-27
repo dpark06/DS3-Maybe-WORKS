@@ -40,24 +40,18 @@ retryBrokenImages();
 initCatWalk();
 initCursor();
 
-// Footer cat: pick a video the browser can show WITH transparency, set the walking speed, respect reduced motion.
+// Footer cat: an animated WebP (transparent, plays in every browser with no video codec or autoplay rules).
+// This sets how fast it walks across, and swaps in a still picture when reduced motion is on.
 export function initCatWalk() {
-  const v = document.querySelector('.catwalk__video');
-  if (!v) return;
-  const apple = /iPad|iPhone|iPod/.test(navigator.userAgent) || (/^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent));
-  v.src = url(apple ? 'video/cat-run-safari.mov' : 'video/cat-run.webm'); // Safari/iOS play HEVC with alpha; the rest play WebM (VP9 with alpha)
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const cat = document.querySelector('.catwalk__cat');
+  if (!cat) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { cat.src = url('img/cat-run-poster.webp'); return; }
   const speed = () => {                                   // walking speed scales with the cat's size
-    const h = v.getBoundingClientRect().height || 300;
-    const travel = window.innerWidth + v.getBoundingClientRect().width * 0.48 + 40;
-    v.parentElement.style.setProperty('--dur', `${(travel / (h * 0.42)).toFixed(1)}s`);
+    const r = cat.getBoundingClientRect();
+    const travel = window.innerWidth + r.width * 0.48 + 40;
+    cat.parentElement.style.setProperty('--dur', `${(travel / ((r.height || 200) * 0.42)).toFixed(1)}s`);
   };
   speed();
   addEventListener('resize', speed);
   addEventListener('load', speed);          // measure again once styles and fonts have settled
-  if (reduce) { v.removeAttribute('autoplay'); v.pause(); return; }
-  const play = () => v.play().catch(() => {});
-  v.addEventListener('canplay', play, { once: true });
-  // only run while it is on screen
-  if ('IntersectionObserver' in window) new IntersectionObserver((es) => es.forEach((e) => (e.isIntersecting ? play() : v.pause()))).observe(v.parentElement);
 }
