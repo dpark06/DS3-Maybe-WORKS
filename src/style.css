@@ -81,11 +81,14 @@ button { font: inherit; color: inherit; }
 .hero--static .hero__caption--b, .hero--static .hero__caption--c { display: none; }
 /* COLLECTION */
 .collection { overflow: hidden; }
-.collection::before {
-  content: ''; position: absolute; right: -8%; top: 4%; width: min(60vw, 620px); aspect-ratio: 1008 / 1184;
-  background: #fff; opacity: .09; -webkit-mask: url(/img/route.svg) center / contain no-repeat; mask: url(/img/route.svg) center / contain no-repeat; pointer-events: none;
+.collection__head { display: grid; gap: clamp(28px, 5vw, 56px); margin-bottom: clamp(36px, 6vw, 72px); }
+.collection__poster { margin: 0; justify-self: start; width: min(100%, 440px); }
+.collection__poster img { width: 100%; height: auto; display: block; }
+@media (min-width: 900px) {
+  .collection__head { grid-template-columns: minmax(0, 1fr) minmax(0, 460px); align-items: start; }
+  .collection__poster { justify-self: end; width: 100%; }
 }
-.key { max-width: 520px; margin: 0 0 clamp(28px, 5vw, 56px); position: relative; }
+.key { max-width: 520px; margin: 0; position: relative; }
 .key__list { list-style: none; margin: .7em 0 0; padding: 0; }
 .key__list li, .legend li { display: flex; align-items: center; gap: 14px; padding: 8px 0; border-top: 2px solid #fff; }
 .key__list li:first-child, .legend li:first-child { border-top: 0; }

@@ -41,13 +41,22 @@
     <!-- 2 · COLLECTION -->
     <section class="section collection" id="collection" aria-labelledby="collection-title">
       <div class="wrap">
-        <p class="eyebrow">The collection</p>
-        <h2 id="collection-title" class="h2">Every store has a story. Pick your spot!</h2>
-        <p class="lede">Tap any photo, tell us how you'd move through it, and share your pick with a friend. There are no wrong answers. Just good vibes.</p>
+        <div class="collection__head">
+          <div class="collection__intro">
+            <p class="eyebrow">The collection</p>
+            <h2 id="collection-title" class="h2">Every store has a story. Pick your spot!</h2>
+            <p class="lede">Tap any photo, tell us how you'd move through it, and share your pick with a friend. There are no wrong answers. Just good vibes.</p>
 
-        <div class="panel key" aria-label="Key to the symbols">
-          <h3 class="panel__title">The key</h3>
-          <ul class="key__list" id="key-list"></ul>
+            <div class="panel key" aria-label="Key to the symbols">
+              <h3 class="panel__title">The key</h3>
+              <ul class="key__list" id="key-list"></ul>
+            </div>
+          </div>
+
+          <figure class="collection__poster">
+            <img src="/img/poster-path.webp" width="1000" height="1500" loading="lazy"
+                 alt="The poster: a collage of convenience store photos with a blue path winding through it, labeled Entrance, Stopping Points, Move Fast, Restricted and Exit" />
+          </figure>
         </div>
 
         <div class="grid" id="grid" aria-label="Photo collection"></div>
