@@ -1,5 +1,6 @@
 import './style.css';
 import { SYMBOLS, SYMBOL_KEYS, symbolSVG } from './symbols.js';
+import { initCursor } from './cursor.js';
 
 // Nav: mark the current page, and tell CSS how tall the bar is (the hero sticks under it).
 export function initNav() {
@@ -36,6 +37,7 @@ export function retryBrokenImages(root = document) {
 initNav();
 retryBrokenImages();
 initCatWalk();
+initCursor();
 
 // Footer cat: pick a video the browser can show WITH transparency, set the walking speed, respect reduced motion.
 export function initCatWalk() {
